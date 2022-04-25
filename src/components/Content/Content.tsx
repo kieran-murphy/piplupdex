@@ -2,8 +2,13 @@ import { useState, useEffect } from "react";
 import PokemonList from '../PokemonList/PokemonList'
 import axios from "axios";
 
-const Content = () => {
-    const [pokemon, setPokemon] = useState(["bulbasaur", "charmander"]);
+export default interface PokemonType {
+  name: string;
+  url: string;
+}
+
+export const Content = () => {
+    const [pokemon, setPokemon] = useState([{name: "bulbasaur", url: "url"}]);
     const [currentPageUrl, setCurrentPageUrl] = useState(
       "https://pokeapi.co/api/v2/pokemon"
     );
@@ -22,17 +27,18 @@ const Content = () => {
             setLoading(false);
             setNextPageUrl(res.data.next);
             setPrevPageUrl(res.data.previous);
-            setPokemon(res.data.results.map((p: object) => p.name));
+            setPokemon((pokemon) => res.data.results.map((p: PokemonType) => p));
+            console.log(pokemon)
           });
-    
+          
         return () => cancel();
       }, [currentPageUrl]);
   
     return (
-    <div>
+    <div className="p-12">
         <PokemonList pokemon={pokemon} />
     </div>
   )
 }
 
-export default Content
+// export default Content
