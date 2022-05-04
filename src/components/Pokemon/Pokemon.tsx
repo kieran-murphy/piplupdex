@@ -1,8 +1,12 @@
 import React from 'react'
 
-const Pokemon = () => {
+type Props = {
+  url: string;
+};
+
+const Pokemon: React.FC<Props> = ({url}) => {
   return (
-    <div>Pokemon</div>
+    <div>{url}</div>
   )
 }
 

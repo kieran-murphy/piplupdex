@@ -1,15 +1,19 @@
 import React from 'react'
 import PokemonType from '../Content/Content'
-// interface PokemonType {
-//   name: string;
-//   url: string;
-// }
+import Pokemon from '../Pokemon/Pokemon'
 
-const PokemonList = ({ pokemon }: any) => {
+type Props = {
+  pokemon: PokemonType[];
+};
+
+const PokemonList: React.FC<Props> = ({ pokemon }) => {
     return (
       <div>
         {pokemon.map((p: PokemonType) => (
+          <>
           <div className='py-1 capitalize' key={p.url}>{p.name}</div>
+          <Pokemon url={p.url}></Pokemon>
+          </>
         ))}
       </div>
     );
