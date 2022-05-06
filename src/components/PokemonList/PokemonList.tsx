@@ -8,9 +8,9 @@ type Props = {
 
 const PokemonList: React.FC<Props> = ({ pokemon }) => {
   return (
-    <div>
+    <div className="grid grid-cols-5">
       {pokemon.map((p: PokemonType) => (
-        <Pokemon key={p.name} url={p.url}></Pokemon>
+        <Pokemon key={p.name} url={p.url} name={p.name}></Pokemon>
       ))}
     </div>
   );
