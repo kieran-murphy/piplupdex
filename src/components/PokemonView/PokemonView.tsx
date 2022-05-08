@@ -82,7 +82,7 @@ const PokemonView = (props: Props) => {
 
   return (
     <div className="flex justify-center">
-      <div className="w-1/2 h-96 outline outline-offset-2 outline-1 rounded-sm m-8">
+      <div className="w-1/2 outline outline-offset-2 outline-1 rounded-sm m-8">
         <div
           className={`${getTypeColor(thisPokemon.type)} flex justify-center`}
         >

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import PokemonList from "../PokemonList/PokemonList";
 import Pagination from "../Pagination/Pagination";
 import axios from "axios";
@@ -9,9 +10,12 @@ export default interface PokemonType {
 }
 
 export const Content = () => {
+  const { pageNumber } = useParams();
   const [pokemon, setPokemon] = useState([{ name: "bulbasaur", url: "url" }]);
   const [currentPageUrl, setCurrentPageUrl] = useState(
-    "https://pokeapi.co/api/v2/pokemon"
+    pageNumber
+      ? `https://pokeapi.co/api/v2/pokemon?offset=${pageNumber}&limit=20`
+      : "https://pokeapi.co/api/v2/pokemon"
   );
   const [nextPageUrl, setNextPageUrl] = useState("");
   const [prevPageUrl, setPrevPageUrl] = useState("");

@@ -3,8 +3,9 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
+import { Content as ContentPage } from "./components/Content/Content";
 import PokemonView from "./components/PokemonView/PokemonView";
 
 ReactDOM.render(
@@ -12,8 +13,9 @@ ReactDOM.render(
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/page/:pageNumber" element={<ContentPage />} />
         <Route path="/pokemon/:name" element={<PokemonView />} />
+        <Route path="*" element={<Navigate to="/page/0" replace />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
