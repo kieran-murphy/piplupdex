@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import getTypeColor from "../../scripts/getTypeColor";
+import getGen from "../../scripts/getGen";
 import { Link } from "react-router-dom";
 
 type Props = {
@@ -14,6 +15,8 @@ const Pokemon: React.FC<Props> = ({ url, name }) => {
     name: "string",
     type: "string",
     image: "string",
+    id: "id",
+    gen: "gen",
   });
 
   useEffect(() => {
@@ -29,6 +32,8 @@ const Pokemon: React.FC<Props> = ({ url, name }) => {
           name: name,
           type: res.data.types[0].type.name,
           image: res.data.sprites.front_default,
+          id: res.data.id,
+          gen: getGen(res.data.id),
         });
       });
 
@@ -49,8 +54,11 @@ const Pokemon: React.FC<Props> = ({ url, name }) => {
             alt={thisPokemon.image}
           />
         </div>
-        <h2 className="text-center font-medium capitalize">
+        <h2 className="text-center font-medium capitalize text-xl">
           {name} - {thisPokemon.type} type
+        </h2>
+        <h2 className="text-center font-medium capitalize">
+          #{thisPokemon.id} - gen {thisPokemon.gen}
         </h2>
       </div>
     </Link>

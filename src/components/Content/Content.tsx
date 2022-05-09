@@ -20,6 +20,7 @@ export const Content = () => {
   const [nextPageUrl, setNextPageUrl] = useState("");
   const [prevPageUrl, setPrevPageUrl] = useState("");
   const [loading, setLoading] = useState(true);
+  const [offsetNext, setOffsetNext] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -32,6 +33,7 @@ export const Content = () => {
         setLoading(false);
         setNextPageUrl(res.data.next);
         setPrevPageUrl(res.data.previous);
+        setOffsetNext(res.data.next.slice(41, 43));
         setPokemon((pokemon) => res.data.results.map((p: PokemonType) => p));
       });
 
@@ -59,5 +61,3 @@ export const Content = () => {
     </>
   );
 };
-
-// export default Content
