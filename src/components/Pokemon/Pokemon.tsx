@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import axios from "axios";
 import getTypeColor from "../../scripts/getTypeColor";
 import getGen from "../../scripts/getGen";

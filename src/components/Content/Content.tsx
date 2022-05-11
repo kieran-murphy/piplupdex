@@ -10,6 +10,7 @@ export default interface PokemonType {
 }
 
 export const Content = () => {
+  const url = window.location.pathname.split("/").pop();
   const { pageNumber } = useParams();
   const [pokemon, setPokemon] = useState([{ name: "bulbasaur", url: "url" }]);
   const [currentPageUrl, setCurrentPageUrl] = useState(
@@ -38,7 +39,7 @@ export const Content = () => {
       });
 
     return () => cancel();
-  }, [currentPageUrl]);
+  }, [url]);
 
   function gotoNextPage() {
     setCurrentPageUrl(nextPageUrl);
@@ -54,6 +55,7 @@ export const Content = () => {
       <Pagination
         gotoNextPage={nextPageUrl ? gotoNextPage : null}
         gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
+        pageNumber={pageNumber}
       />
       <div className="p-12">
         <PokemonList pokemon={pokemon} />
