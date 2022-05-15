@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useParams } from "react-router-dom";
 import PokemonList from "../PokemonList/PokemonList";
 import Pagination from "../Pagination/Pagination";
@@ -39,11 +39,10 @@ export const Content = () => {
       });
 
     return () => cancel();
-  }, [url]);
+  }, [currentPageUrl]);
 
   function gotoNextPage() {
     setCurrentPageUrl(nextPageUrl);
-    console.log("next");
   }
 
   function gotoPrevPage() {

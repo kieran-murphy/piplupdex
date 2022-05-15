@@ -14,13 +14,17 @@ const Pagination = ({ gotoNextPage, gotoPrevPage, pageNumber }: Props) => {
     <div className="flex space-x-4 place-content-center mt-6">
       {gotoPrevPage && (
         <Link to={prevURL}>
-          <button className="rounded-full w-20 h-10">Previous</button>
+          <button className="rounded-full w-20 h-10" onClick={gotoPrevPage}>
+            Previous
+          </button>
         </Link>
       )}
 
       {gotoNextPage && (
         <Link to={nextURL}>
-          <button className="rounded-full w-20 h-10">Next</button>
+          <button className="rounded-full w-20 h-10" onClick={gotoNextPage}>
+            Next
+          </button>
         </Link>
       )}
     </div>
