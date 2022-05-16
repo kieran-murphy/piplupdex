@@ -54,6 +54,7 @@ const Pokemon: React.FC<Props> = ({ url, name }) => {
             alt={thisPokemon.image}
           />
         </div>
+
         <h2 className="text-center font-medium capitalize text-xl">
           {name} - {thisPokemon.type} type
         </h2>
