@@ -1,6 +1,11 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    textShadow: {
+      // defaults to {}
+      default: "0 2px 5px rgba(0, 0, 0, 0.5)",
+      lg: "0 2px 10px rgba(0, 0, 0, 0.5)",
+    },
     screens: {
       sm: "640px",
       // => @media (min-width: 640px) { ... }
@@ -37,6 +42,9 @@ module.exports = {
         dark: "#705746",
         steel: "#B7B7CE",
         fairy: "#D685AD",
+      },
+      fontFamily: {
+        "press-start": ['"Press Start 2P"', "cursive"],
       },
     },
   },
