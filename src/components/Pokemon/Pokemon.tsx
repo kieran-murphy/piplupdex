@@ -19,8 +19,6 @@ const Pokemon: React.FC<Props> = ({ url, name }) => {
     gen: "gen",
   });
 
-  const textStyle = {};
-
   useEffect(() => {
     setLoading(true);
     let cancel: any;
@@ -58,24 +56,11 @@ const Pokemon: React.FC<Props> = ({ url, name }) => {
         </div>
 
         <h2 className="text-center font-medium capitalize text-xl">
-          {name} - #{thisPokemon.id} - gen {thisPokemon.gen}
+          {name} - {thisPokemon.type} type
         </h2>
-        <div className="flex flex-row space-x-4 justify-center">
-          <div
-            className={`${getTypeColor(
-              thisPokemon.type
-            )} w-20 text-center my-2 outline outline-offset-2 outline-1 rounded-xl`}
-          >
-            <p className="font-sm uppercase text-white">{thisPokemon.type}</p>
-          </div>
-          <div
-            className={`${getTypeColor(
-              thisPokemon.type
-            )} w-20 text-center my-2 outline outline-offset-2 outline-1 rounded-xl`}
-          >
-            <p className="font-sm uppercase text-white">{thisPokemon.type}</p>
-          </div>
-        </div>
+        <h2 className="text-center font-medium capitalize">
+          #{thisPokemon.id} - gen {thisPokemon.gen}
+        </h2>
       </div>
     </Link>
   );
