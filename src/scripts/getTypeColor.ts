@@ -1,46 +1,46 @@
 const getTypeColor = (type: any) => {
     switch (type) {
         case "normal":
-            return "bg-gradient-to-b from-normal to-slate-100";
+            return "bg-normal";
         case "water":
-            return "bg-gradient-to-b from-water to-slate-100";
+            return "bg-water";
         case "fire":
-            return "bg-gradient-to-b from-fire to-slate-100";
+            return "bg-fire";
         case "grass":
-            return "bg-gradient-to-b from-grass to-slate-100";
+            return "bg-grass";
         case "ground":
-            return "bg-gradient-to-b from-ground to-slate-100";
+            return "bg-ground";
         case "flying":
-            return "bg-gradient-to-b from-flying to-slate-100";
+            return "bg-flying";
         case "bug":
-            return "bg-gradient-to-b from-bug to-slate-100";
+            return "bg-bug";
         case "electric":
-            return "bg-gradient-to-b from-electric to-slate-100";
+            return "bg-electric";
         case "poison":    
-            return "bg-gradient-to-b from-poison to-slate-100";
+            return "bg-poison";
         case "dragon":    
-            return "bg-gradient-to-b from-dragon to-slate-100";
+            return "bg-dragon";
         case "rock":    
-            return "bg-gradient-to-b from-rock to-slate-100";
+            return "bg-rock";
         case "dark":    
-            return "bg-gradient-to-b from-dark to-slate-100";
+            return "bg-dark";
         case "ice":    
-            return "bg-gradient-to-b from-ice to-slate-100";
+            return "bg-ice";
         case "fairy":    
-            return "bg-gradient-to-b from-fairy to-slate-100";
+            return "bg-fairy";
         case "psychic":    
-            return "bg-gradient-to-b from-psychic to-slate-100";
+            return "bg-psychic";
         case "ghost":    
-            return "bg-gradient-to-b from-ghost to-slate-100";
+            return "bg-ghost";
         case "fighting":    
-            return "bg-gradient-to-b from-fighting to-slate-100";
+            return "bg-fighting";
         case "steel":    
-            return "bg-gradient-to-b from-steel to-slate-100";
+            return "bg-steel";
         
     
         default:
             return "bg-slate-300";
     }
-};
-
-export default getTypeColor;
+  };
+  
+  export default getTypeColor;
