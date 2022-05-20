@@ -3,6 +3,7 @@ import axios from "axios";
 import getTypeColor from "../../scripts/getTypeColor";
 import getGen from "../../scripts/getGen";
 import { Link } from "react-router-dom";
+import "./Pokemon.css";
 
 type Props = {
   url: string;
@@ -14,6 +15,7 @@ const Pokemon: React.FC<Props> = ({ url, name }) => {
   const [thisPokemon, setThisPokemon] = useState({
     name: "string",
     type: "string",
+    secondType: "string",
     image: "string",
     id: "id",
     gen: "gen",
@@ -33,6 +35,8 @@ const Pokemon: React.FC<Props> = ({ url, name }) => {
         setThisPokemon({
           name: name,
           type: res.data.types[0].type.name,
+          secondType:
+            res.data.types.length > 1 ? res.data.types[1].type.name : null,
           image: res.data.sprites.front_default,
           id: res.data.id,
           gen: getGen(res.data.id),
@@ -66,15 +70,21 @@ const Pokemon: React.FC<Props> = ({ url, name }) => {
               thisPokemon.type
             )} w-20 text-center my-2 outline outline-offset-2 outline-1 rounded-xl`}
           >
-            <p className="font-sm uppercase text-white">{thisPokemon.type}</p>
+            <p id="typetext" className="text-white">
+              {thisPokemon.type}
+            </p>
           </div>
-          <div
-            className={`${getTypeColor(
-              thisPokemon.type
-            )} w-20 text-center my-2 outline outline-offset-2 outline-1 rounded-xl`}
-          >
-            <p className="font-sm uppercase text-white">{thisPokemon.type}</p>
-          </div>
+          {thisPokemon.secondType && (
+            <div
+              className={`${getTypeColor(
+                thisPokemon.secondType
+              )} w-20 text-center my-2 outline outline-offset-2 outline-1 rounded-xl`}
+            >
+              <p id="typetext" className="text-white">
+                {thisPokemon.secondType}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </Link>
