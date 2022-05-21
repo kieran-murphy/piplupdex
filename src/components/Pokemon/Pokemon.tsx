@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import axios from "axios";
 import getTypeColor from "../../scripts/getTypeColor";
+import getImageURL from "../../scripts/getImageURL";
 import getGen from "../../scripts/getGen";
 import { Link } from "react-router-dom";
 import "./Pokemon.css";
@@ -37,7 +38,9 @@ const Pokemon: React.FC<Props> = ({ url, name }) => {
           type: res.data.types[0].type.name,
           secondType:
             res.data.types.length > 1 ? res.data.types[1].type.name : null,
-          image: res.data.sprites.front_default,
+          image: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${getImageURL(
+            url.split("/")[6]
+          )}.png`,
           id: res.data.id,
           gen: getGen(res.data.id),
         });
@@ -54,11 +57,7 @@ const Pokemon: React.FC<Props> = ({ url, name }) => {
             thisPokemon.type
           )} w-60 flex justify-center`}
         >
-          <img
-            className="w-40"
-            src={thisPokemon.image}
-            alt={thisPokemon.image}
-          />
+          <img className="w-40 p-6" src={thisPokemon.image} alt="/" />
         </div>
 
         <h2 className="text-center font-medium capitalize text-xl">

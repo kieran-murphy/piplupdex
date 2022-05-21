@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import getTypeColor from "../../scripts/getTypeColor";
+import getImageURL from "../../scripts/getImageURL";
 import Evolutions from "../Evolutions/Evolutions";
 
 type Props = {};
@@ -20,6 +21,8 @@ const PokemonView = (props: Props) => {
     type: "",
     image: "",
     speciesUrl: "",
+    height: "",
+    weight: "",
   });
 
   useEffect(() => {
@@ -33,8 +36,12 @@ const PokemonView = (props: Props) => {
         setLoading(false);
         setThisPokemon({
           type: res.data.types[0].type.name,
-          image: res.data.sprites.front_default,
+          image: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${getImageURL(
+            res.data.species.url.split("/")[6]
+          )}.png`,
           speciesUrl: res.data.species.url,
+          height: (res.data.height / 10).toString(),
+          weight: (res.data.weight / 10).toString(),
         });
       });
 
@@ -86,10 +93,16 @@ const PokemonView = (props: Props) => {
         <div
           className={`${getTypeColor(thisPokemon.type)} flex justify-center`}
         >
-          <img className="w-40" src={thisPokemon.image} alt="/" />
+          <img className="w-60" src={thisPokemon.image} alt="/" />
         </div>
         <h1 className="text-center font-medium capitalize text-2xl">{name}</h1>
-        <Evolutions evolutions={evolutions} />
+        {/* <Evolutions evolutions={evolutions} /> */}
+        <h2 className="text-center font-medium text-lg">
+          {thisPokemon.height}m
+        </h2>
+        <h2 className="text-center font-medium text-lg">
+          {thisPokemon.weight}kg
+        </h2>
       </div>
     </div>
   );
