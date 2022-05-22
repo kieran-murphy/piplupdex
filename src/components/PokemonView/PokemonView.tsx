@@ -24,6 +24,12 @@ const PokemonView = (props: Props) => {
     height: "",
     weight: "",
   });
+  const [gender, setGender] = useState(0);
+  const [flavor, setFlavor] = useState("");
+  const [species, setSpecies] = useState("");
+  const [habitat, setHabitat] = useState("");
+  const [legendary, setLegendary] = useState(false);
+  const [mythical, setMythical] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -58,6 +64,12 @@ const PokemonView = (props: Props) => {
       .then((res) => {
         setLoading(false);
         setEvolutionChain(res.data.evolution_chain.url);
+        setGender(res.data.gender_rate);
+        setFlavor(res.data.flavor_text_entries[0].flavor_text);
+        setSpecies(res.data.genera[7].genus);
+        setHabitat(res.data.habitat.name);
+        setLegendary(res.data.is_legendary);
+        setMythical(res.data.is_mythical);
       });
   }, [thisPokemon]);
 
@@ -89,20 +101,37 @@ const PokemonView = (props: Props) => {
 
   return (
     <div className="flex justify-center">
-      <div className="w-1/2 outline outline-offset-2 outline-1 rounded-sm m-8">
+      <div className="w-2/3 outline outline-offset-2 outline-1 rounded-sm m-8">
         <div
           className={`${getTypeColor(thisPokemon.type)} flex justify-center`}
         >
-          <img className="w-60" src={thisPokemon.image} alt="/" />
+          <img className="w-80 p-6" src={thisPokemon.image} alt="/" />
         </div>
-        <h1 className="text-center font-medium capitalize text-2xl">{name}</h1>
+        <h1 className="text-center font-medium capitalize text-3xl my-4">
+          {name}
+        </h1>
         {/* <Evolutions evolutions={evolutions} /> */}
         <h2 className="text-center font-medium text-lg">
-          {thisPokemon.height}m
+          About: {flavor.replace("", "")}
+        </h2>
+        <h2 className="text-center font-medium text-lg">Species: {species}</h2>
+        <h2 className="text-center font-medium text-lg">
+          Height: {thisPokemon.height}m
         </h2>
         <h2 className="text-center font-medium text-lg">
-          {thisPokemon.weight}kg
+          Weight: {thisPokemon.weight}kg
         </h2>
+        <h2 className="text-center font-medium text-lg capitalize">
+          Habitat: {habitat.replace("-", " ")}
+        </h2>
+        <h2 className="text-center font-medium text-lg">
+          Male: {((8 - gender) / 8) * 100}%
+        </h2>
+        <h2 className="text-center font-medium text-lg">
+          Female: {(gender / 8) * 100}%
+        </h2>
+        {legendary && <h2>Legendary</h2>}
+        {mythical && <h2>Mythical</h2>}
       </div>
     </div>
   );
