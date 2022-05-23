@@ -67,37 +67,37 @@ const PokemonView = (props: Props) => {
         setGender(res.data.gender_rate);
         setFlavor(res.data.flavor_text_entries[0].flavor_text);
         setSpecies(res.data.genera[7].genus);
-        setHabitat(res.data.habitat.name);
         setLegendary(res.data.is_legendary);
         setMythical(res.data.is_mythical);
+        setHabitat(res.data.habitat.name);
       });
   }, [thisPokemon]);
 
-  useEffect(() => {
-    setLoading(true);
-    let cancel: any;
-    axios
-      .get(evolutionChain, {
-        cancelToken: new axios.CancelToken((c) => (cancel = c)),
-      })
-      .then((res) => {
-        setLoading(false);
-        setEvolutions({
-          first: {
-            name: res.data.chain.species.name,
-            url: res.data.chain.species.url,
-          },
-          second: {
-            name: res.data.chain.evolves_to[0].species.name,
-            url: res.data.chain.evolves_to[0].species.url,
-          },
-          third: {
-            name: res.data.chain.evolves_to[0].evolves_to[0].species.name,
-            url: res.data.chain.evolves_to[0].evolves_to[0].species.url,
-          },
-        });
-      });
-  }, [evolutionChain]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   let cancel: any;
+  //   axios
+  //     .get(evolutionChain, {
+  //       cancelToken: new axios.CancelToken((c) => (cancel = c)),
+  //     })
+  //     .then((res) => {
+  //       setLoading(false);
+  //       setEvolutions({
+  //         first: {
+  //           name: res.data.chain.species.name,
+  //           url: res.data.chain.species.url,
+  //         },
+  //         second: {
+  //           name: res.data.chain.evolves_to[0].species.name,
+  //           url: res.data.chain.evolves_to[0].species.url,
+  //         },
+  //         third: {
+  //           name: res.data.chain.evolves_to[0].evolves_to[0].species.name,
+  //           url: res.data.chain.evolves_to[0].evolves_to[0].species.url,
+  //         },
+  //       });
+  //     });
+  // }, [evolutionChain]);
 
   return (
     <div className="flex justify-center">
@@ -121,15 +121,23 @@ const PokemonView = (props: Props) => {
         <h2 className="text-center font-medium text-lg">
           Weight: {thisPokemon.weight}kg
         </h2>
+
         <h2 className="text-center font-medium text-lg capitalize">
-          Habitat: {habitat.replace("-", " ")}
+          Habitat: {habitat ? habitat.replace("-", " ") : "No Known Habitat"}
         </h2>
-        <h2 className="text-center font-medium text-lg">
-          Male: {((8 - gender) / 8) * 100}%
-        </h2>
-        <h2 className="text-center font-medium text-lg">
-          Female: {(gender / 8) * 100}%
-        </h2>
+
+        {gender > 0 ? (
+          <h2 className="text-center font-medium text-lg">
+            Male: {((8 - gender) / 8) * 100}%
+          </h2>
+        ) : (
+          <h2 className="text-center font-medium text-lg">Genderless</h2>
+        )}
+        {gender > 0 && (
+          <h2 className="text-center font-medium text-lg">
+            Female: {(gender / 8) * 100}%
+          </h2>
+        )}
         {legendary && <h2>Legendary</h2>}
         {mythical && <h2>Mythical</h2>}
       </div>
