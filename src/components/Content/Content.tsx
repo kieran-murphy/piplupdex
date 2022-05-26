@@ -1,5 +1,6 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import { useParams } from "react-router-dom";
+import { StageSpinner } from "react-spinners-kit";
 import PokemonList from "../PokemonList/PokemonList";
 import Pagination from "../Pagination/Pagination";
 import axios from "axios";
@@ -31,11 +32,11 @@ export const Content = () => {
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
       })
       .then((res) => {
-        setLoading(false);
         setNextPageUrl(res.data.next);
         setPrevPageUrl(res.data.previous);
         setOffsetNext(res.data.next.slice(41, 43));
         setPokemon((pokemon) => res.data.results.map((p: PokemonType) => p));
+        setLoading(false);
       });
 
     return () => cancel();
@@ -51,14 +52,22 @@ export const Content = () => {
 
   return (
     <>
-      <Pagination
-        gotoNextPage={nextPageUrl ? gotoNextPage : null}
-        gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
-        pageNumber={pageNumber}
-      />
-      <div className="p-12">
-        <PokemonList pokemon={pokemon} />
-      </div>
+      {loading ? (
+        <div className="py-10 flex justify-center">
+          <StageSpinner size={60} color="#FF0000" loading={true} />
+        </div>
+      ) : (
+        <>
+          <Pagination
+            gotoNextPage={nextPageUrl ? gotoNextPage : null}
+            gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
+            pageNumber={pageNumber}
+          />
+          <div className="p-12">
+            <PokemonList pokemon={pokemon} />
+          </div>
+        </>
+      )}
     </>
   );
 };

@@ -4,6 +4,7 @@ import axios from "axios";
 import getTypeColor from "../../scripts/getTypeColor";
 import getImageURL from "../../scripts/getImageURL";
 import Evolutions from "../Evolutions/Evolutions";
+import { StageSpinner } from "react-spinners-kit";
 
 type Props = {};
 
@@ -101,46 +102,52 @@ const PokemonView = (props: Props) => {
 
   return (
     <div className="flex justify-center">
-      <div className="w-2/3 outline outline-offset-2 outline-1 rounded-sm m-8">
-        <div
-          className={`${getTypeColor(thisPokemon.type)} flex justify-center`}
-        >
-          <img className="w-80 p-6" src={thisPokemon.image} alt="/" />
+      {loading ? (
+        <div className="py-10">
+          <StageSpinner size={60} color="#FF0000" loading={true} />
         </div>
-        <h1 className="text-center font-medium capitalize text-3xl my-4">
-          {name}
-        </h1>
-        {/* <Evolutions evolutions={evolutions} /> */}
-        <h2 className="text-center font-medium text-lg">
-          About: {flavor.replace("", "")}
-        </h2>
-        <h2 className="text-center font-medium text-lg">Species: {species}</h2>
-        <h2 className="text-center font-medium text-lg">
-          Height: {thisPokemon.height}m
-        </h2>
-        <h2 className="text-center font-medium text-lg">
-          Weight: {thisPokemon.weight}kg
-        </h2>
-
-        <h2 className="text-center font-medium text-lg capitalize">
-          Habitat: {habitat ? habitat.replace("-", " ") : "No Known Habitat"}
-        </h2>
-
-        {gender > 0 ? (
+      ) : (
+        <div className="w-2/3 outline outline-offset-2 outline-1 rounded-sm m-8">
+          <div
+            className={`${getTypeColor(thisPokemon.type)} flex justify-center`}
+          >
+            <img className="w-80 p-6" src={thisPokemon.image} alt="/" />
+          </div>
+          <h1 className="text-center font-medium capitalize text-3xl my-4">
+            {name}
+          </h1>
+          {/* <Evolutions evolutions={evolutions} /> */}
           <h2 className="text-center font-medium text-lg">
-            Male: {((8 - gender) / 8) * 100}%
+            About: {flavor.replace("", "")}
           </h2>
-        ) : (
-          <h2 className="text-center font-medium text-lg">Genderless</h2>
-        )}
-        {gender > 0 && (
           <h2 className="text-center font-medium text-lg">
-            Female: {(gender / 8) * 100}%
+            Species: {species}
           </h2>
-        )}
-        {legendary && <h2>Legendary</h2>}
-        {mythical && <h2>Mythical</h2>}
-      </div>
+          <h2 className="text-center font-medium text-lg">
+            Height: {thisPokemon.height}m
+          </h2>
+          <h2 className="text-center font-medium text-lg">
+            Weight: {thisPokemon.weight}kg
+          </h2>
+          <h2 className="text-center font-medium text-lg capitalize">
+            Habitat: {habitat ? habitat.replace("-", " ") : "No Known Habitat"}
+          </h2>
+          {gender > 0 ? (
+            <h2 className="text-center font-medium text-lg">
+              Male: {((8 - gender) / 8) * 100}%
+            </h2>
+          ) : (
+            <h2 className="text-center font-medium text-lg">Genderless</h2>
+          )}
+          {gender > 0 && (
+            <h2 className="text-center font-medium text-lg">
+              Female: {(gender / 8) * 100}%
+            </h2>
+          )}
+          {legendary && <h2>Legendary</h2>}
+          {mythical && <h2>Mythical</h2>}
+        </div>
+      )}
     </div>
   );
 };
