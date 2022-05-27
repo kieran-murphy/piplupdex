@@ -24,6 +24,7 @@ const PokemonView = (props: Props) => {
     speciesUrl: "",
     height: "",
     weight: "",
+    id: 0,
   });
   const [gender, setGender] = useState(0);
   const [flavor, setFlavor] = useState("");
@@ -49,6 +50,7 @@ const PokemonView = (props: Props) => {
           speciesUrl: res.data.species.url,
           height: (res.data.height / 10).toString(),
           weight: (res.data.weight / 10).toString(),
+          id: res.data.id,
         });
       });
 
@@ -107,11 +109,16 @@ const PokemonView = (props: Props) => {
           <StageSpinner size={60} color="#FF0000" loading={true} />
         </div>
       ) : (
-        <div className="w-2/3 outline outline-offset-2 outline-1 rounded-sm m-8">
+        <div className="w-2/3 outline outline-offset-2 outline-1 rounded-sm m-8 place-items-center">
           <div
-            className={`${getTypeColor(thisPokemon.type)} flex justify-center`}
+            className={`${getTypeColor(
+              thisPokemon.type
+            )} mx-auto w-full flex flex-col items-center justify-center relative`}
           >
-            <img className="w-80 p-6" src={thisPokemon.image} alt="/" />
+            <h1 className="text-8xl font-semibold text-black text-opacity-25 absolute tracking-xl top-1/8 pointer-events-none">
+              #{thisPokemon.id}
+            </h1>
+            <img className="w-80 p-6 " src={thisPokemon.image} alt="/" />
           </div>
           <h1 className="text-center font-medium capitalize text-3xl my-4">
             {name}
