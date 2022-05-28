@@ -38,6 +38,9 @@ module.exports = {
         steel: "#B7B7CE",
         fairy: "#D685AD",
       },
+      font: {
+        raleway: ['"Raleway"', "sans-serif"],
+      },
     },
   },
   plugins: [],
