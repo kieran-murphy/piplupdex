@@ -149,7 +149,12 @@ const PokemonView = (props: Props) => {
             </div>
           </div>
           <div className="m-8">
+            <div className="flex flex-row place-content-between">
             <h1 className="capitalize text-3xl mb-10 font-medium">{name}</h1>
+            <button>Desc</button>
+            <button>Data</button>
+            <button>Evo</button>
+            </div>
             {/* <Evolutions evolutions={evolutions} /> */}
             <h2 className="font-medium text-lg">About:</h2>
             <h2 className="text-lg pb-4">{flavor.replace("", " ")}</h2>
