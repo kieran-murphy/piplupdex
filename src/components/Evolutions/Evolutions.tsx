@@ -20,9 +20,13 @@ type Props = {
 const Evolutions = ({ evolutions }: Props) => {
   return (
     <div>
-      <Pokemon url={evolutions.first.url} name={evolutions.first.name} />
+      {/* <Pokemon url={evolutions.first.url} name={evolutions.first.name} />
       <Pokemon url={evolutions.second.url} name={evolutions.second.name} />
-      <Pokemon url={evolutions.third.url} name={evolutions.third.name} />
+      <Pokemon url={evolutions.third.url} name={evolutions.third.name} /> */}
+      <h1>
+        Coming soon Coming soon Coming soon Coming soon Coming soon Coming soon
+        Coming soon Coming soon
+      </h1>
     </div>
   );
 };

@@ -7,16 +7,22 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import { Content as ContentPage } from "./components/Content/Content";
 import PokemonView from "./components/PokemonView/PokemonView";
+import { ThemeProvider } from "./Theme/ThemeContext";
+import Background from "./Theme/Background";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/page/:pageNumber" element={<ContentPage />} />
-        <Route path="/pokemon/:name" element={<PokemonView />} />
-        <Route path="*" element={<Navigate to="/page/0" replace />} />
-      </Routes>
+      <ThemeProvider>
+        <Background>
+          <Navbar />
+          <Routes>
+            <Route path="/page/:pageNumber" element={<ContentPage />} />
+            <Route path="/pokemon/:name" element={<PokemonView />} />
+            <Route path="*" element={<Navigate to="/page/0" replace />} />
+          </Routes>
+        </Background>
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

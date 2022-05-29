@@ -1,18 +1,20 @@
-import { useState } from "react";
+import React from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { RiSunLine, RiMoonClearLine } from "react-icons/ri";
+import { ThemeContext } from "../../Theme/ThemeContext";
 
 const Navbar = () => {
-  const [mode, setMode] = useState("light");
+  const { theme, setTheme } = React.useContext(ThemeContext);
 
-  const handleClick = () => {
-    if (mode === "light") {
-      setMode("dark");
-    } else {
-      setMode("light");
-    }
-    console.log(mode);
-  };
+  // const handleClick = () => {
+  //   if (mode === "light") {
+  //     setMode("dark");
+  //   } else {
+  //     setMode("light");
+  //   }
+  //   console.log(mode);
+  // };
 
   return (
     <div className="w-full bg-red-500 text-white text-xl h-20 flex flex-row justify-between">
@@ -26,14 +28,14 @@ const Navbar = () => {
       </div>
 
       <div className="place-items-end">
-        {mode === "light" ? (
+        {theme === "light" ? (
           <RiSunLine
-            onClick={handleClick}
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="text-3xl my-6 cursor-pointer mx-10"
           />
         ) : (
           <RiMoonClearLine
-            onClick={handleClick}
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="text-3xl my-6 cursor-pointer mx-10"
           />
         )}
