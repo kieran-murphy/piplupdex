@@ -49,7 +49,7 @@ const Pokemon: React.FC<Props> = ({ url, name }) => {
 
   return (
     <Link to={`/pokemon/${name}`}>
-      <div className="w-60 outline outline-offset-2 outline-1 rounded-sm m-8 dark:bg-slate-800 dark:text-white">
+      <div className="w-60 outline outline-offset-2 outline-1 rounded-sm m-8 dark:bg-cyan-900 dark:text-white">
         <div
           className={`${getTypeColor(
             thisPokemon.type

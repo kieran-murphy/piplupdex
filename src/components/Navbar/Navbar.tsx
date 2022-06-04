@@ -17,7 +17,7 @@ const Navbar = () => {
   // };
 
   return (
-    <div className="w-full bg-red-500 text-white text-xl h-20 flex flex-row justify-between">
+    <div className="w-full bg-red-500 text-white text-xl h-20 flex flex-row justify-between dark:text-slate-900 dark:bg-red-600">
       <div className="flex flex-row">
         <h1 className="p-6">
           <Link to="/">Piplup Dex</Link>

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import getTypeColor from "../../scripts/getTypeColor";
 import getImageURL from "../../scripts/getImageURL";
+import getEnglish from "../../scripts/getEnglish";
 import Evolutions from "../Evolutions/Evolutions";
 import { StageSpinner } from "react-spinners-kit";
 
@@ -72,7 +73,8 @@ const PokemonView = (props: Props) => {
         setLoading(false);
         setEvolutionChain(res.data.evolution_chain.url);
         setGender(res.data.gender_rate);
-        setFlavor(res.data.flavor_text_entries[0].flavor_text);
+        // setFlavor(res.data.flavor_text_entries[0].flavor_text);
+        setFlavor(getEnglish(res.data.flavor_text_entries));
         setSpecies(res.data.genera[7].genus);
         setLegendary(res.data.is_legendary);
         setMythical(res.data.is_mythical);
@@ -107,14 +109,14 @@ const PokemonView = (props: Props) => {
   }, [evolutionChain]);
 
   return (
-    <body className="bg-white dark:bg-black transition-all h-screen">
+    <body className="bg-white dark:bg-slate-900 transition-all h-screen">
       <div className="flex justify-center">
         {loading ? (
           <div className="py-10">
             <StageSpinner size={60} color="#FF0000" loading={true} />
           </div>
         ) : (
-          <div className="w-2/3 m-20 flex flex-row bg-slate-100 dark:bg-slate-800 dark:text-white rounded-xl">
+          <div className="drop-shadow-lg w-2/3 m-20 flex flex-row bg-slate-200 dark:bg-cyan-900 dark:text-white rounded-xl">
             <div
               className={`${getTypeColor(
                 thisPokemon.type

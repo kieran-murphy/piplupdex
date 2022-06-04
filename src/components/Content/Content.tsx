@@ -52,7 +52,7 @@ export const Content = () => {
   }
 
   return (
-    <body className="bg-white dark:bg-black transition-all h-auto">
+    <body className="bg-white dark:bg-slate-900 transition-all h-auto">
       {loading ? (
         <div className="py-10 flex justify-center">
           <StageSpinner size={60} color="#FF0000" loading={true} />
