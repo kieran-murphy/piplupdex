@@ -22,8 +22,6 @@ const Pokemon: React.FC<Props> = ({ url, name }) => {
     gen: "gen",
   });
 
-  const textStyle = {};
-
   useEffect(() => {
     setLoading(true);
     let cancel: any;
@@ -51,7 +49,7 @@ const Pokemon: React.FC<Props> = ({ url, name }) => {
 
   return (
     <Link to={`/pokemon/${name}`}>
-      <div className="w-60 outline outline-offset-2 outline-1 rounded-sm m-8">
+      <div className="w-60 outline outline-offset-2 outline-1 rounded-sm m-8 dark:bg-slate-800 dark:text-white">
         <div
           className={`${getTypeColor(
             thisPokemon.type

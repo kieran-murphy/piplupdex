@@ -11,10 +11,13 @@ const Pagination = ({ gotoNextPage, gotoPrevPage, pageNumber }: Props) => {
   const prevURL: string = `/page/${parseInt(pageNumber) - 20}`;
   const nextURL: string = `/page/${parseInt(pageNumber) + 20}`;
   return (
-    <div className="flex space-x-4 place-content-center mt-6">
+    <div className="flex space-x-4 place-content-center">
       {gotoPrevPage && (
         <Link to={prevURL}>
-          <button className="rounded-full w-20 h-10" onClick={gotoPrevPage}>
+          <button
+            className="rounded-full w-20 h-10 mt-6"
+            onClick={gotoPrevPage}
+          >
             Previous
           </button>
         </Link>
@@ -22,7 +25,10 @@ const Pagination = ({ gotoNextPage, gotoPrevPage, pageNumber }: Props) => {
 
       {gotoNextPage && (
         <Link to={nextURL}>
-          <button className="rounded-full w-20 h-10" onClick={gotoNextPage}>
+          <button
+            className="rounded-full w-20 h-10  mt-6"
+            onClick={gotoNextPage}
+          >
             Next
           </button>
         </Link>

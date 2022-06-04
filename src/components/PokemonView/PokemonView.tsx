@@ -107,103 +107,107 @@ const PokemonView = (props: Props) => {
   }, [evolutionChain]);
 
   return (
-    <div className="flex justify-center">
-      {loading ? (
-        <div className="py-10">
-          <StageSpinner size={60} color="#FF0000" loading={true} />
-        </div>
-      ) : (
-        <div className="w-2/3 m-20 flex flex-row bg-slate-100 dark:bg-slate-800 rounded-xl">
-          <div
-            className={`${getTypeColor(
-              thisPokemon.type
-            )} flex flex-col relative w-1/3 justify-between rounded-l-xl`}
-          >
-            <h1 className="px-4 text-2xl font-semibold text-black text-opacity-50 tracking-xl top-1/8 pointer-events-none">
-              #{thisPokemon.id}
-            </h1>
-            <img className="w-full p-10" src={thisPokemon.image} alt="/" />
+    <body className="bg-white dark:bg-black transition-all h-screen">
+      <div className="flex justify-center">
+        {loading ? (
+          <div className="py-10">
+            <StageSpinner size={60} color="#FF0000" loading={true} />
+          </div>
+        ) : (
+          <div className="w-2/3 m-20 flex flex-row bg-slate-100 dark:bg-slate-800 dark:text-white rounded-xl">
+            <div
+              className={`${getTypeColor(
+                thisPokemon.type
+              )} flex flex-col relative w-1/3 justify-between rounded-l-xl`}
+            >
+              <h1 className="px-4 text-2xl font-semibold text-black text-opacity-50 tracking-xl top-1/8 pointer-events-none">
+                #{thisPokemon.id}
+              </h1>
+              <img className="w-full p-10" src={thisPokemon.image} alt="/" />
 
-            <div className="bg-white w-full bg-white/25 h-20">
-              <div className="flex flex-row space-x-4 justify-center pt-5">
-                <div
-                  className={`${getTypeColor(
-                    thisPokemon.type
-                  )} w-20 text-center my-2 outline outline-2 rounded-xl`}
-                >
-                  <p id="typetext" className="text-white">
-                    {thisPokemon.type}
-                  </p>
-                </div>
-                {thisPokemon.secondType && (
+              <div className="bg-white w-full bg-white/25 h-20">
+                <div className="flex flex-row space-x-4 justify-center pt-5">
                   <div
                     className={`${getTypeColor(
-                      thisPokemon.secondType
+                      thisPokemon.type
                     )} w-20 text-center my-2 outline outline-2 rounded-xl`}
                   >
                     <p id="typetext" className="text-white">
-                      {thisPokemon.secondType}
+                      {thisPokemon.type}
                     </p>
                   </div>
-                )}
+                  {thisPokemon.secondType && (
+                    <div
+                      className={`${getTypeColor(
+                        thisPokemon.secondType
+                      )} w-20 text-center my-2 outline outline-2 rounded-xl`}
+                    >
+                      <p id="typetext" className="text-white">
+                        {thisPokemon.secondType}
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-          <div className="m-8">
-            <div className="flex flex-row place-content-between">
-              <h1 className="capitalize text-3xl mb-10 font-medium">{name}</h1>
-              <h2
-                onClick={() => setInfo("about")}
-                className="capitalize text-2xl mb-10 font-medium text-red-600 hover:text-red-400 underline underline-offset-8 decoration-gray-500 decoration-2 cursor-pointer"
-              >
-                About
-              </h2>
-              <h2
-                onClick={() => setInfo("evolutions")}
-                className="capitalize text-2xl mb-10 font-medium text-red-600 hover:text-red-400 underline underline-offset-8 decoration-gray-500 decoration-2 cursor-pointer"
-              >
-                Data
-              </h2>
-              <h2
-                onClick={() => setInfo("evolutions")}
-                className="capitalize text-2xl mb-10 font-medium text-red-600 hover:text-red-400 underline underline-offset-8 decoration-gray-500 decoration-2 cursor-pointer"
-              >
-                Evolutions
-              </h2>
-            </div>
-
-            {info === "about" ? (
-              <div>
-                <h2 className="font-medium text-lg">About:</h2>
-                <h2 className="text-lg pb-4">{flavor.replace("", " ")}</h2>
-                <h2 className="font-medium text-lg">Species: </h2>
-                <h2 className="text-lg pb-4">{species}</h2>
-                <h2 className="font-medium text-lg">Height: </h2>
-                <h2 className="text-lg pb-4">{thisPokemon.height}m</h2>
-                <h2 className="font-medium text-lg">Weight: </h2>
-                <h2 className="text-lg pb-4">{thisPokemon.weight}kg</h2>
-                <h2 className="font-medium text-lg capitalize">Habitat:</h2>
-                <h2 className="text-lg capitalize pb-8">
-                  {habitat ? habitat.replace("-", " ") : "No Known Habitat"}
+            <div className="m-8">
+              <div className="flex flex-row place-content-between">
+                <h1 className="capitalize text-3xl mb-10 font-medium">
+                  {name}
+                </h1>
+                <h2
+                  onClick={() => setInfo("about")}
+                  className="capitalize text-2xl mb-10 font-medium text-red-600 hover:text-red-400 underline underline-offset-8 decoration-gray-500 decoration-2 cursor-pointer"
+                >
+                  About
                 </h2>
-                {gender > 0 ? (
-                  <h2 className="text-xl">♂ {((8 - gender) / 8) * 100}%</h2>
-                ) : (
-                  <h2 className="text-xl font-medium">Genderless</h2>
-                )}
-                {gender > 0 && (
-                  <h2 className="text-xl">♀ {(gender / 8) * 100}%</h2>
-                )}
-                {legendary && <h2>Legendary</h2>}
-                {mythical && <h2>Mythical</h2>}
+                <h2
+                  onClick={() => setInfo("evolutions")}
+                  className="capitalize text-2xl mb-10 font-medium text-red-600 hover:text-red-400 underline underline-offset-8 decoration-gray-500 decoration-2 cursor-pointer"
+                >
+                  Data
+                </h2>
+                <h2
+                  onClick={() => setInfo("evolutions")}
+                  className="capitalize text-2xl mb-10 font-medium text-red-600 hover:text-red-400 underline underline-offset-8 decoration-gray-500 decoration-2 cursor-pointer"
+                >
+                  Evolutions
+                </h2>
               </div>
-            ) : (
-              <Evolutions evolutions={evolutions} />
-            )}
+
+              {info === "about" ? (
+                <div>
+                  <h2 className="font-medium text-lg">About:</h2>
+                  <h2 className="text-lg pb-4">{flavor.replace("", " ")}</h2>
+                  <h2 className="font-medium text-lg">Species: </h2>
+                  <h2 className="text-lg pb-4">{species}</h2>
+                  <h2 className="font-medium text-lg">Height: </h2>
+                  <h2 className="text-lg pb-4">{thisPokemon.height}m</h2>
+                  <h2 className="font-medium text-lg">Weight: </h2>
+                  <h2 className="text-lg pb-4">{thisPokemon.weight}kg</h2>
+                  <h2 className="font-medium text-lg capitalize">Habitat:</h2>
+                  <h2 className="text-lg capitalize pb-8">
+                    {habitat ? habitat.replace("-", " ") : "No Known Habitat"}
+                  </h2>
+                  {gender > 0 ? (
+                    <h2 className="text-xl">♂ {((8 - gender) / 8) * 100}%</h2>
+                  ) : (
+                    <h2 className="text-xl font-medium">Genderless</h2>
+                  )}
+                  {gender > 0 && (
+                    <h2 className="text-xl">♀ {(gender / 8) * 100}%</h2>
+                  )}
+                  {legendary && <h2>Legendary</h2>}
+                  {mythical && <h2>Mythical</h2>}
+                </div>
+              ) : (
+                <Evolutions evolutions={evolutions} />
+              )}
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </body>
   );
 };
 

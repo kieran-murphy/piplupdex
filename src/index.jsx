@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
@@ -14,14 +13,14 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider>
-        <Background>
-          <Navbar />
-          <Routes>
-            <Route path="/page/:pageNumber" element={<ContentPage />} />
-            <Route path="/pokemon/:name" element={<PokemonView />} />
-            <Route path="*" element={<Navigate to="/page/0" replace />} />
-          </Routes>
-        </Background>
+        {/* <Background> */}
+        <Navbar />
+        <Routes>
+          <Route path="/page/:pageNumber" element={<ContentPage />} />
+          <Route path="/pokemon/:name" element={<PokemonView />} />
+          <Route path="*" element={<Navigate to="/page/0" replace />} />
+        </Routes>
+        {/* </Background> */}
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,

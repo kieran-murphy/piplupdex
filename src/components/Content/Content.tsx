@@ -4,6 +4,7 @@ import { StageSpinner } from "react-spinners-kit";
 import PokemonList from "../PokemonList/PokemonList";
 import Pagination from "../Pagination/Pagination";
 import axios from "axios";
+import Background from "../../Theme/Background";
 
 export default interface PokemonType {
   name: string;
@@ -51,7 +52,7 @@ export const Content = () => {
   }
 
   return (
-    <>
+    <body className="bg-white dark:bg-black transition-all h-auto">
       {loading ? (
         <div className="py-10 flex justify-center">
           <StageSpinner size={60} color="#FF0000" loading={true} />
@@ -68,6 +69,6 @@ export const Content = () => {
           </div>
         </>
       )}
-    </>
+    </body>
   );
 };
