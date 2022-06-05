@@ -109,23 +109,23 @@ const PokemonView = (props: Props) => {
   }, [evolutionChain]);
 
   return (
-    <body className="bg-white dark:bg-slate-900 transition-all h-screen">
+    <body className="bg-white dark:bg-slate-900 transition-all lg:h-screen h-full">
       <div className="flex justify-center">
         {loading ? (
           <div className="py-10">
             <StageSpinner size={60} color="#FF0000" loading={true} />
           </div>
         ) : (
-          <div className="drop-shadow-lg w-2/3 m-20 flex flex-row bg-slate-200 dark:bg-cyan-900 dark:text-white rounded-xl">
+          <div className="drop-shadow-lg lg:w-2/3 lg:my-20 w-5/6 my-10 lg:flex lg:flex-row rounded-xl bg-slate-200 dark:bg-cyan-900 dark:text-white ">
             <div
               className={`${getTypeColor(
                 thisPokemon.type
-              )} flex flex-col relative w-1/3 justify-between rounded-l-xl`}
+              )} flex flex-col relative lg:w-1/3 justify-between lg:rounded-l-xl rounded-t-xl`}
             >
               <h1 className="px-4 text-2xl font-semibold text-black text-opacity-50 tracking-xl top-1/8 pointer-events-none">
                 #{thisPokemon.id}
               </h1>
-              <img className="w-full p-10" src={thisPokemon.image} alt="/" />
+              <img className="lg:w-full p-10" src={thisPokemon.image} alt="/" />
 
               <div className="bg-white w-full bg-white/25 h-20">
                 <div className="flex flex-row space-x-4 justify-center pt-5">
