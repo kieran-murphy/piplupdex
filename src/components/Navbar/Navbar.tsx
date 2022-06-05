@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { RiSunLine, RiMoonClearLine } from "react-icons/ri";
+import { Icon } from "@iconify/react";
 import { ThemeContext } from "../../Theme/ThemeContext";
 
 const Navbar = () => {
@@ -19,12 +20,14 @@ const Navbar = () => {
   return (
     <div className="w-full bg-red-500 text-white text-xl h-20 flex flex-row justify-between dark:text-slate-900 dark:bg-red-600">
       <div className="flex flex-row">
-        <h1 className="p-6">
-          <Link to="/">Piplup Dex</Link>
+        <h1 className="p-5">
+          <Link to="/">
+            <Icon icon="mdi:pokeball" width="40" height="40" />
+          </Link>
         </h1>
-        <h1 className="p-6">
+        {/* <h1 className="p-6">
           <Link to="/gens">Generations</Link>
-        </h1>
+        </h1> */}
       </div>
 
       <div className="place-items-end">

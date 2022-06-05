@@ -153,7 +153,7 @@ const PokemonView = (props: Props) => {
               </div>
             </div>
             <div className="m-8">
-              <div className="flex flex-row place-content-between">
+              <div className="lg:flex lg:flex-row lg:place-content-between">
                 <h1 className="capitalize text-3xl mb-10 font-medium">
                   {name}
                 </h1>
